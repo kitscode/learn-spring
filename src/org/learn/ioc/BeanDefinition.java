@@ -1,5 +1,6 @@
 package org.learn.ioc;
 
+
 /**
  * @author kevin
  * @date 2018年3月5日
@@ -12,6 +13,8 @@ public class BeanDefinition {
 
 	private String beanClassName;
 
+	private PropertyValues propertyValues;
+	
 	public BeanDefinition() {
 	
 	}
@@ -42,6 +45,14 @@ public class BeanDefinition {
 
 	public void setBeanClass(Class beanClass) {
 		this.beanClass = beanClass;
+	}
+
+	public PropertyValues getPropertyValues() {
+		return propertyValues;
+	}
+
+	public void setPropertyValues(PropertyValues propertyValues) {
+		this.propertyValues = propertyValues;
 	}
 	
 }
