@@ -5,7 +5,14 @@ package org.learn.test;
  * @date 2018年3月5日
  */
 public class HelloSerive {
+	
+	private String text;
+
 	public void helloSpring(){
-		System.out.println("Hello Spring !");
+		System.out.println(text);
 	}
+	
+    public void setText(String text) {
+        this.text = text;
+    }
 }
