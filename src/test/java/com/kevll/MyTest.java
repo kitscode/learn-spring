@@ -1,6 +1,4 @@
-package com.kevll.test;
-
-import com.kevll.BeanDefinition;
+package com.kevll;
 
 import com.kevll.io.ResourceLoader;
 import com.kevll.xml.XmlBeanDefinitionReader;

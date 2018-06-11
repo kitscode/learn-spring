@@ -1,4 +1,4 @@
-package com.kevll.test;
+package com.kevll;
 
 /**
  * @author kevin
