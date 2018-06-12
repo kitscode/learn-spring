@@ -20,14 +20,16 @@ public class MyTest {
 		xmlBeanDefinitionReader.loadBeanDefinitions("beans.xml");
 
 		// 2.初始化BeanFactory并注册bean
-		BeanFactory beanFactory = new AutowireCapableBeanFactory();
+		AutowireCapableBeanFactory beanFactory = new AutowireCapableBeanFactory();
 		for (Map.Entry<String, BeanDefinition> beanDefinitionEntry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
 			beanFactory.registerBeanDefinition(beanDefinitionEntry.getKey(), beanDefinitionEntry.getValue());
 		}
 
+		beanFactory.preInstantiateSingletons();//预加载，关闭就是懒加载，在显示地getBean()时才去加载Bean
+
 		// 3.获取bean
 		HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
-		helloWorldService.helloSpring();
+		helloWorldService.helloWorld();
 
 	}
 }

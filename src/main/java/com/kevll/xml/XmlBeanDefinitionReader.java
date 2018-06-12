@@ -1,6 +1,7 @@
 package com.kevll.xml;
 
 import com.kevll.BeanDefinition;
+import com.kevll.BeanReference;
 import com.kevll.PropertyValue;
 import com.kevll.io.ResourceLoader;
 import org.w3c.dom.Document;
@@ -63,15 +64,25 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	}
 
     private void processProperty(Element ele,BeanDefinition beanDefinition) {
-        NodeList propertyNode = ele.getElementsByTagName("property");
-        for (int i = 0; i < propertyNode.getLength(); i++) {
-            Node node = propertyNode.item(i);
-            if (node instanceof Element) {
-                Element propertyEle = (Element) node;
-                String name = propertyEle.getAttribute("name");
-                String value = propertyEle.getAttribute("value");
-                beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name,value));
-            }
-        }
+		NodeList propertyNode = ele.getElementsByTagName("property");
+		for (int i = 0; i < propertyNode.getLength(); i++) {
+			Node node = propertyNode.item(i);
+			if (node instanceof Element) {
+				Element propertyEle = (Element) node;
+				String name = propertyEle.getAttribute("name");
+				String value = propertyEle.getAttribute("value");
+				if (value != null && value.length() > 0) {
+					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, value));
+				} else {
+					String ref = propertyEle.getAttribute("ref");
+					if (ref == null || ref.length() == 0) {
+						throw new IllegalArgumentException("Configuration problem: <property> element for property '"
+								+ name + "' must specify a ref or value");
+					}
+					BeanReference beanReference = new BeanReference(ref);
+					beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(name, beanReference));
+				}
+			}
+		}
     }
 }
