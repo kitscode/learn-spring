@@ -1,10 +1,10 @@
 package com.kevll;
 
-import com.kevll.io.ResourceLoader;
-import com.kevll.xml.XmlBeanDefinitionReader;
+import com.kevll.beans.BeanDefinition;
+import com.kevll.beans.io.ResourceLoader;
+import com.kevll.beans.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
-import com.kevll.factory.AutowireCapableBeanFactory;
-import com.kevll.factory.BeanFactory;
+import com.kevll.beans.factory.AutowireCapableBeanFactory;
 
 import java.util.Map;
 

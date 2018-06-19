@@ -1,5 +1,6 @@
 package com.kevll;
 
+import com.kevll.beans.BeanReference;
 import org.junit.Test;
 
 /**

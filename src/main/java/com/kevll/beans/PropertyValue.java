@@ -1,4 +1,4 @@
-package com.kevll;
+package com.kevll.beans;
 
 /**
  * @author kevin

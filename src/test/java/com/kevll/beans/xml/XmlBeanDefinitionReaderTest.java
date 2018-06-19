@@ -1,7 +1,7 @@
-package com.kevll.xml;
+package com.kevll.beans.xml;
 
-import com.kevll.BeanDefinition;
-import com.kevll.io.ResourceLoader;
+import com.kevll.beans.BeanDefinition;
+import com.kevll.beans.io.ResourceLoader;
 import org.junit.Assert;
 import org.junit.Test;
 

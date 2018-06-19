@@ -1,4 +1,4 @@
-package com.kevll.xml;
+package com.kevll.beans.xml;
 
 /**
  * 从配置中读取BeanDefinitionReader

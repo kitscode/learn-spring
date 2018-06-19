@@ -1,4 +1,4 @@
-package com.kevll.io;
+package com.kevll.beans.io;
 
 import java.net.URL;
 

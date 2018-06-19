@@ -1,8 +1,8 @@
-package com.kevll.factory;
+package com.kevll.beans.factory;
 
-import com.kevll.BeanDefinition;
-import com.kevll.BeanReference;
-import com.kevll.PropertyValue;
+import com.kevll.beans.BeanDefinition;
+import com.kevll.beans.BeanReference;
+import com.kevll.beans.PropertyValue;
 import java.lang.reflect.Field;
 
 /**

@@ -1,4 +1,4 @@
-package com.kevll;
+package com.kevll.beans;
 
 import java.util.ArrayList;
 import java.util.List;

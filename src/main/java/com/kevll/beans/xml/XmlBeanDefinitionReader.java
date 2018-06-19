@@ -1,9 +1,9 @@
-package com.kevll.xml;
+package com.kevll.beans.xml;
 
-import com.kevll.BeanDefinition;
-import com.kevll.BeanReference;
-import com.kevll.PropertyValue;
-import com.kevll.io.ResourceLoader;
+import com.kevll.beans.BeanDefinition;
+import com.kevll.beans.BeanReference;
+import com.kevll.beans.PropertyValue;
+import com.kevll.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

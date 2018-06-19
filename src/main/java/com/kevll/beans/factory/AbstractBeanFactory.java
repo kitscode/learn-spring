@@ -1,4 +1,4 @@
-package com.kevll.factory;
+package com.kevll.beans.factory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.kevll.BeanDefinition;
+import com.kevll.beans.BeanDefinition;
 
 /**
  * @author kevin
@@ -31,7 +31,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 		return bean;
 	}
 
-	@Override
 	public void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception{
 //        Object bean = doCreateBean(beanDefinition);此方法被延后，为了实现懒加载
 //        beanDefinition.setBean(bean);
