@@ -28,7 +28,7 @@ public class MyTest {
 		beanFactory.preInstantiateSingletons();//预加载，关闭就是懒加载，在显示地getBean()时才去加载Bean
 
 		// 3.获取bean
-		HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+		HelloWorldServiceImpl helloWorldService = (HelloWorldServiceImpl) beanFactory.getBean("helloWorldService");
 		helloWorldService.helloWorld();
 
 	}

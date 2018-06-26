@@ -39,7 +39,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	public void registerBeanDefinitions(Document doc) {
 		Element root = doc.getDocumentElement();
-
 		parseBeanDefinitions(root);
 	}
 
