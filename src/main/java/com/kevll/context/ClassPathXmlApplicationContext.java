@@ -24,6 +24,8 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 		super(beanFactory);
 		this.configLocation = configLocation;
 		refresh();
+		//ApplicationContext会默认实例化非懒加载的类
+		beanFactory.preInstantiateSingletons();
 	}
 
 	@Override
