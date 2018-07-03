@@ -10,4 +10,6 @@
         <property name="outputService" ref="outputService"></property>
     </bean>
 
+    <bean name="beanInitializeLogger" class="com.kevll.BeanInitializeLogger">
+    </bean>
 </beans>

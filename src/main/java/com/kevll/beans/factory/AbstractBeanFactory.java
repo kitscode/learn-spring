@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.kevll.beans.BeanDefinition;
+import com.kevll.beans.BeanPostProcessor;
 
 /**
  * @author kevin
@@ -18,6 +19,8 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
 	private final List<String> beanDefinitionNames = new ArrayList<String>();
 
+	private List<BeanPostProcessor> beanPostProcessors=new ArrayList<BeanPostProcessor>();
+
 	@Override
 	public Object getBean(String name) throws Exception{
 		BeanDefinition beanDefinition = beanDefinitionMap.get(name);
@@ -27,8 +30,20 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 		Object bean = beanDefinition.getBean();
 		if (bean == null) {
 			bean = doCreateBean(beanDefinition);
+			//植入BeanProcessor
+			initializeBean(bean,name);
 		}
 		return bean;
+	}
+
+	protected void initializeBean(Object bean, String name) throws Exception{
+		for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
+			bean = beanPostProcessor.postProcessBeforeInitialization(bean, name);
+		}
+
+		for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
+			bean = beanPostProcessor.postProcessAfterInitialization(bean, name);
+		}
 	}
 
 	public void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception{
@@ -47,4 +62,20 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 	}
 
 	protected abstract Object doCreateBean(BeanDefinition beanDefinition) throws Exception;
+
+	public List getBeansForType(Class type) throws Exception{
+		List beans=new ArrayList();
+		//根据给定class在xml中定义过的bean当中遍历，取出能实例化这个class的bean
+		for(String beanDefinitonName:beanDefinitionNames){
+			//isAssignableFrom -> type是否是getBeanClass的相同类或接口，或是父类或父接口
+			if(type.isAssignableFrom(beanDefinitionMap.get(beanDefinitonName).getBeanClass())){
+				beans.add(getBean(beanDefinitonName));
+			}
+		}
+		return beans;
+	}
+
+	public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) throws Exception{
+		this.beanPostProcessors.add(beanPostProcessor);
+	}
 }

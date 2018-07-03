@@ -1,6 +1,9 @@
 package com.kevll.context;
 
+import com.kevll.beans.BeanPostProcessor;
 import com.kevll.beans.factory.AbstractBeanFactory;
+
+import java.util.List;
 
 /**
  * @author: kevin
@@ -15,6 +18,19 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
     }
 
     public void refresh() throws Exception{
+        loadBeanDefinitions(beanFactory);
+        registerBeanPostProcessors(beanFactory);
+        beanFactory.preInstantiateSingletons();
+    }
+
+    protected abstract void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception;
+
+    //向BeanFactory中注入BeanProcessor
+    protected void registerBeanPostProcessors(AbstractBeanFactory beanFactory) throws Exception{
+        List beanPostProcessors = beanFactory.getBeansForType(BeanPostProcessor.class);
+        for (Object beanPostProcessor : beanPostProcessors) {
+            beanFactory.addBeanPostProcessor((BeanPostProcessor) beanPostProcessor);
+        }
     }
 
     @Override
