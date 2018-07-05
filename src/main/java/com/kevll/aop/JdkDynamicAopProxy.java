@@ -1,5 +1,6 @@
 package com.kevll.aop;
 
+import com.kevll.aop.interfaces.AopProxy;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import java.lang.reflect.InvocationHandler;

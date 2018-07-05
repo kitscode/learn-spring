@@ -1,4 +1,4 @@
-package com.kevll.aop;
+package com.kevll.aop.interfaces;
 
 import java.lang.reflect.Method;
 
