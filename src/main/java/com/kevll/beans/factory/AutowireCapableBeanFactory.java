@@ -1,5 +1,6 @@
 package com.kevll.beans.factory;
 
+import com.kevll.aop.interfaces.BeanFactoryAware;
 import com.kevll.beans.BeanDefinition;
 import com.kevll.beans.BeanReference;
 import com.kevll.beans.PropertyValue;
@@ -24,6 +25,9 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 	}
 	
 	protected void setProperties(Object bean,BeanDefinition mbd) throws Exception{
+		if (bean instanceof BeanFactoryAware) {//监测如果是BeanFactory的子类，为其初始化BeanFactory
+			((BeanFactoryAware) bean).setBeanFactory(this);
+		}
 		for (PropertyValue propertyValue : mbd.getPropertyValues().getPropertyValues()) {
 			Field declaredField = bean.getClass().getDeclaredField(propertyValue.getName());
 			declaredField.setAccessible(true);

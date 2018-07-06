@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-    <bean name="outputService" class="com.kevll.OutputService">
+    <bean id="outputService" class="com.kevll.OutputService">
         <property name="helloWorldService" ref="helloWorldService"></property>
     </bean>
 
-    <bean name="helloWorldService" class="com.kevll.HelloWorldServiceImpl">
+    <bean id="helloWorldService" class="com.kevll.HelloWorldServiceImpl">
         <property name="text" value="Hello World!"></property>
         <property name="outputService" ref="outputService"></property>
     </bean>
 
-    <bean name="beanInitializeLogger" class="com.kevll.BeanInitializeLogger">
+    <!--<bean name="beanInitializeLogger" class="com.kevll.BeanInitializeLogger">-->
+    <!--</bean>-->
+
+    <bean id="timeInterceptor" class="com.kevll.aop.TimerInterceptor"></bean>
+
+    <bean id="autoProxyCreator" class="com.kevll.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
+
+    <bean id="aspectjAspect" class="com.kevll.aop.AspectJExpressionPointcutAdvisor">
+        <property name="advice" ref="timeInterceptor"></property>
+        <!--<property name="expression" value="execution(* us.codecraft.tinyioc.*.*(..))"></property>-->
     </bean>
 </beans>
