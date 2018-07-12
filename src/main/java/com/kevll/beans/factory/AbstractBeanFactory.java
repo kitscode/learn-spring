@@ -32,6 +32,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 			bean = doCreateBean(beanDefinition);
 			//植入BeanProcessor
 			initializeBean(bean,name);
+			beanDefinition.setBean(bean);//这句不加aop拦截会失败
 		}
 		return bean;
 	}

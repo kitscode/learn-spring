@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
 
-    <bean id="outputService" class="com.kevll.OutputService">
-        <property name="helloWorldService" ref="helloWorldService"></property>
+    <bean id="outputService" class="com.kevll.OutputServiceImpl">
     </bean>
 
     <bean id="helloWorldService" class="com.kevll.HelloWorldServiceImpl">
@@ -19,6 +18,6 @@
 
     <bean id="aspectjAspect" class="com.kevll.aop.AspectJExpressionPointcutAdvisor">
         <property name="advice" ref="timeInterceptor"></property>
-        <!--<property name="expression" value="execution(* us.codecraft.tinyioc.*.*(..))"></property>-->
+        <property name="expression" value="execution(* com.kevll.*.*(..))"></property>
     </bean>
 </beans>

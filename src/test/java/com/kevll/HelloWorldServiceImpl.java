@@ -17,4 +17,8 @@ public class HelloWorldServiceImpl implements HelloWorldService{
     public void setText(String text) {
         this.text = text;
     }
+
+	public void setOutputService(OutputService outputService) {
+		this.outputService = outputService;
+	}
 }
