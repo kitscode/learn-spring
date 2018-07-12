@@ -9,15 +9,12 @@
         <property name="outputService" ref="outputService"></property>
     </bean>
 
-    <!--<bean name="beanInitializeLogger" class="com.kevll.BeanInitializeLogger">-->
-    <!--</bean>-->
-
     <bean id="timeInterceptor" class="com.kevll.aop.TimerInterceptor"></bean>
 
     <bean id="autoProxyCreator" class="com.kevll.aop.AspectJAwareAdvisorAutoProxyCreator"></bean>
 
     <bean id="aspectjAspect" class="com.kevll.aop.AspectJExpressionPointcutAdvisor">
         <property name="advice" ref="timeInterceptor"></property>
-        <property name="expression" value="execution(* com.kevll.*.*(..))"></property>
+        <property name="expression" value="execution(* com.kevll.*.he*(..))"></property>
     </bean>
 </beans>

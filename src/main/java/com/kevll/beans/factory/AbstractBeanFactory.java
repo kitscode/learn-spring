@@ -30,14 +30,13 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 		Object bean = beanDefinition.getBean();
 		if (bean == null) {
 			bean = doCreateBean(beanDefinition);
-			//植入BeanProcessor
-			initializeBean(bean,name);
-			beanDefinition.setBean(bean);//这句不加aop拦截会失败
+            bean = initializeBean(bean, name);//植入BeanProcessor
+			beanDefinition.setBean(bean);//用代理类代替原来的类
 		}
 		return bean;
 	}
 
-	protected void initializeBean(Object bean, String name) throws Exception{
+	protected Object initializeBean(Object bean, String name) throws Exception{
 		for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
 			bean = beanPostProcessor.postProcessBeforeInitialization(bean, name);
 		}
@@ -45,6 +44,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 		for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
 			bean = beanPostProcessor.postProcessAfterInitialization(bean, name);
 		}
+		return bean;
 	}
 
 	public void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception{
