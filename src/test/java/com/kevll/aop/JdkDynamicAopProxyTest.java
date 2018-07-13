@@ -16,10 +16,7 @@ public class JdkDynamicAopProxyTest {
     public void testInterceptor() throws Exception {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
         HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
-        // --------- helloWorldService without AOP
-        helloWorldService.helloWorld();
 
-        // --------- helloWorldService with AOP
         // 1. 设置被代理对象(Joinpoint)
         AdvisedSupport advisedSupport = new AdvisedSupport();
         TargetSource targetSource = new TargetSource(helloWorldService, HelloWorldService.class);
