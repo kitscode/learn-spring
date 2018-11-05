@@ -8,7 +8,7 @@ import com.kevll.beans.BeanDefinition;
  * @date 2018年3月6日
  */
 public interface BeanFactory {
-	
+	//test green notification
 	Object getBean(String name) throws Exception;
 
 //	void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception;
